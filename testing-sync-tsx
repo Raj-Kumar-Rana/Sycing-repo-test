@@ -1,0 +1,38 @@
+class TaskManager {
+    constructor() {
+        this.tasks = [];
+    }
+
+    addTask(title, description) {
+        const newTask = {
+            id: this.tasks.length + 1,
+            title,
+            description,
+            completed: false
+        };
+        this.tasks.push(newTask);
+        return newTask;
+    }
+
+    completeTask(id) {
+        const task = this.tasks.find(task => task.id === id);
+        if (task) {
+            task.completed = true;
+            return task;
+        } else {
+            throw new Error("Task not found");
+        }
+    }
+
+    getTasks() {
+        return this.tasks;
+    }
+}
+
+// Example usage
+const manager = new TaskManager();
+manager.addTask("Learn JavaScript", "Complete JavaScript fundamentals");
+manager.addTask("Build a project", "Create a simple project using JS");
+console.log(manager.getTasks());
+manager.completeTask(1);
+console.log(manager.getTasks());
